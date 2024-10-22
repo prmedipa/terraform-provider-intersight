@@ -23,7 +23,7 @@ func resourceIqnpoolPool() *schema.Resource {
 		UpdateContext: resourceIqnpoolPoolUpdate,
 		DeleteContext: resourceIqnpoolPoolDelete,
 		Importer:      &schema.ResourceImporter{StateContext: schema.ImportStatePassthroughContext},
-		CustomizeDiff: CustomizeTagDiff,
+		CustomizeDiff: CombinedCustomizeDiff,
 		Schema: map[string]*schema.Schema{
 			"account_moid": {
 				Description: "The Account ID for this managed object.",
@@ -192,7 +192,7 @@ func resourceIqnpoolPool() *schema.Resource {
 						"from": {
 							Description:  "The first suffix number in the block.",
 							Type:         schema.TypeInt,
-							ValidateFunc: validation.IntAtLeast(0),
+							ValidateFunc: Int64AtLeast(8223372036854775807),
 							Optional:     true,
 						},
 						"object_type": {
@@ -202,10 +202,9 @@ func resourceIqnpoolPool() *schema.Resource {
 							Default:     "iqnpool.IqnSuffixBlock",
 						},
 						"size": {
-							Description:  "Number of identifiers this block can hold.",
-							Type:         schema.TypeInt,
-							ValidateFunc: validation.IntBetween(1, 1024),
-							Optional:     true,
+							Description: "Number of identifiers this block can hold.",
+							Type:        schema.TypeInt,
+							Optional:    true,
 							DiffSuppressFunc: func(k, old, new string, d *schema.ResourceData) bool {
 								if new == "0" || new == "0.0" {
 									return true
