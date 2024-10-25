@@ -20,7 +20,7 @@ resource "intersight_memory_persistent_memory_policy" "memory_persistent_memory_
       additional_properties = ""
       class_id              = "memory.PersistentMemoryLogicalNamespace"
       name                  = "logical_namespace_test"
-      capacity              = 9223372036854775807
+      capacity              = 9223372036854775800
       object_type           = "memory.PersistentMemoryLogicalNamespace"
       mode                  = "block"
       socket_id             = 1
