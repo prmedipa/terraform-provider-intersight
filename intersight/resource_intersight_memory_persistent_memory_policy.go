@@ -229,7 +229,7 @@ func resourceMemoryPersistentMemoryPolicy() *schema.Resource {
 							Type:         schema.TypeInt,
 							ValidateFunc: Int64Between(1, 9223372036854775807),
 							Optional:     true,
-							Default:      9223372036854775807,
+							Default:      7223372036854775807,
 						},
 						"class_id": {
 							Description: "The fully-qualified name of the instantiated, concrete type.\nThis property is used as a discriminator to identify the type of the payload\nwhen marshaling and unmarshaling data.",
