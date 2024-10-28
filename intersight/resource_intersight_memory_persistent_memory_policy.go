@@ -227,7 +227,7 @@ func resourceMemoryPersistentMemoryPolicy() *schema.Resource {
 						"capacity": {
 							Description:  "Capacity of this Namespace that is created or modified.",
 							Type:         schema.TypeInt,
-							ValidateFunc: Int64AtMost(7223372036854775807),
+							ValidateFunc: Int64AtLeast(6223372036854775800),
 							Optional:     true,
 							Default:      7223372036854775807,
 						},
