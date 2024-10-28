@@ -7,7 +7,7 @@ resource "intersight_iqnpool_pool" "iqnpool_pool1" {
   iqn_suffix_blocks {
     object_type = "iqnpool.IqnSuffixBlock"
     suffix = "iscsi01"
-    from = 8223372036854775808
+    from = 0
     to = 20
   }
   organization {
