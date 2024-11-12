@@ -302,3 +302,7 @@ func CombinedCustomizeDiff(ctx context.Context, diff *schema.ResourceDiff, i int
 	}
 	return err
 }
+func ConvertStringToInt64(s string) int64 {
+	i, _ := strconv.ParseInt(s, 10, 64)
+	return i
+}
