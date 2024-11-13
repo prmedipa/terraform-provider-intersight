@@ -133,9 +133,10 @@ func resourceMemoryPersistentMemoryPolicy() *schema.Resource {
 							Default:     "memory.PersistentMemoryGoal",
 						},
 						"memory_mode_percentage": {
-							Description: "Volatile memory percentage.",
-							Type:        schema.TypeInt,
-							Optional:    true,
+							Description:  "Volatile memory percentage.",
+							Type:         schema.TypeInt,
+							ValidateFunc: validation.IntBetween(0, 100),
+							Optional:     true,
 						},
 						"object_type": {
 							Description: "The fully-qualified name of the instantiated, concrete type.\nThe value should be the same as the 'ClassId' property.",
@@ -227,9 +228,9 @@ func resourceMemoryPersistentMemoryPolicy() *schema.Resource {
 						"capacity": {
 							Description:  "Capacity of this Namespace that is created or modified.",
 							Type:         schema.TypeInt,
-							ValidateFunc: Int64AtLeast(6223372036854775800),
+							ValidateFunc: validation.All(Int64Between(ConvertStringToInt64("6223372036854775800"), ConvertStringToInt64("7223372036854775807"))),
 							Optional:     true,
-							Default:      7223372036854775807,
+							Default:      ConvertStringToInt64("7223372036854775807"),
 						},
 						"class_id": {
 							Description: "The fully-qualified name of the instantiated, concrete type.\nThis property is used as a discriminator to identify the type of the payload\nwhen marshaling and unmarshaling data.",
